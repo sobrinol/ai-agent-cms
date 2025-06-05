@@ -1,0 +1,23 @@
+# Global
+*.log
+*.env
+.DS_Store
+node_modules/
+dist/
+build/
+.env.local
+
+# Java (Spring Boot)
+backend/target/
+backend/.idea/
+backend/.classpath
+backend/.project
+backend/.settings
+backend/src/main/resources/application.properties
+
+# Node/Vite
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.next/
+frontend/.env
