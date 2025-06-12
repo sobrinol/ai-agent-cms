@@ -1,0 +1,140 @@
+// JPA Repository Built-in Methods Reference
+// ========================================
+
+// BASIC CRUD OPERATIONS (CrudRepository)
+// ======================================
+
+// CREATE/UPDATE
+// save(S entity) - Save a single entity
+// saveAll(Iterable<S> entities) - Save multiple entities
+// saveAndFlush(S entity) - Save and flush immediately (JpaRepository only)
+// saveAllAndFlush(Iterable<S> entities) - Save all and flush (JpaRepository only)
+
+// READ/FIND
+// findById(ID id) - Find entity by ID, returns Optional<T>
+// findAll() - Find all entities
+// findAll(Sort sort) - Find all entities with sorting (PagingAndSortingRepository)
+// findAll(Pageable pageable) - Find all entities with pagination (PagingAndSortingRepository)
+// findAllById(Iterable<ID> ids) - Find all entities by collection of IDs
+
+// EXISTS/COUNT
+// existsById(ID id) - Check if entity exists by ID
+// count() - Count total number of entities
+
+// DELETE
+// deleteById(ID id) - Delete entity by ID
+// delete(T entity) - Delete specific entity
+// deleteAll() - Delete all entities
+// deleteAll(Iterable<? extends T> entities) - Delete specific entities
+// deleteAllById(Iterable<? extends ID> ids) - Delete entities by IDs
+// deleteInBatch(Iterable<T> entities) - Batch delete (JpaRepository only)
+// deleteAllInBatch() - Delete all in batch (JpaRepository only)
+// deleteAllByIdInBatch(Iterable<ID> ids) - Batch delete by IDs (JpaRepository only)
+
+// JPA REPOSITORY SPECIFIC METHODS
+// ===============================
+
+// FLUSH OPERATIONS
+// flush() - Flush pending changes to database
+// saveAndFlush(S entity) - Save entity and flush immediately
+// saveAllAndFlush(Iterable<S> entities) - Save all entities and flush
+// deleteInBatch(Iterable<T> entities) - Delete entities in batch
+// deleteAllInBatch() - Delete all entities in batch
+// deleteAllByIdInBatch(Iterable<ID> ids) - Delete by IDs in batch
+
+// REFERENCE OPERATIONS
+// getById(ID id) - Get reference to entity (may be lazy-loaded proxy)
+// getOne(ID id) - Deprecated, use getById instead
+// getReferenceById(ID id) - Get reference by ID (newer method)
+
+// QUERY BY EXAMPLE (if using QueryByExampleExecutor)
+// =================================================
+// findOne(Example<S> example) - Find one entity by example
+// findAll(Example<S> example) - Find all entities by example
+// findAll(Example<S> example, Sort sort) - Find all by example with sorting
+// findAll(Example<S> example, Pageable pageable) - Find all by example with pagination
+// count(Example<S> example) - Count entities by example
+// exists(Example<S> example) - Check if entity exists by example
+
+// CUSTOM QUERY METHODS (Method Name Conventions)
+// =============================================
+
+// BASIC FINDERS
+// findBy{Property}(Type property) - Find by single property
+// findBy{Property}And{Property2}(Type prop1, Type prop2) - Find by multiple properties with AND
+// findBy{Property}Or{Property2}(Type prop1, Type prop2) - Find by multiple properties with OR
+
+// COMPARISON OPERATORS
+// findBy{Property}LessThan(Type property) - Less than
+// findBy{Property}LessThanEqual(Type property) - Less than or equal
+// findBy{Property}GreaterThan(Type property) - Greater than  
+// findBy{Property}GreaterThanEqual(Type property) - Greater than or equal
+// findBy{Property}Between(Type start, Type end) - Between two values
+// findBy{Property}After(Date date) - After date
+// findBy{Property}Before(Date date) - Before date
+
+// STRING OPERATIONS
+// findBy{Property}Like(String pattern) - SQL LIKE operator
+// findBy{Property}NotLike(String pattern) - SQL NOT LIKE
+// findBy{Property}StartingWith(String prefix) - Starts with string
+// findBy{Property}EndingWith(String suffix) - Ends with string
+// findBy{Property}Containing(String substring) - Contains substring
+// findBy{Property}IgnoreCase(String value) - Case insensitive
+
+// NULL CHECKS
+// findBy{Property}IsNull() - Property is null
+// findBy{Property}IsNotNull() - Property is not null
+
+// COLLECTION OPERATIONS
+// findBy{Property}In(Collection<Type> values) - Property value in collection
+// findBy{Property}NotIn(Collection<Type> values) - Property value not in collection
+
+// BOOLEAN OPERATIONS
+// findBy{Property}True() - Boolean property is true
+// findBy{Property}False() - Boolean property is false
+
+// ORDERING AND LIMITING
+// findBy{Property}OrderBy{Property2}Asc(Type property) - Order by ascending
+// findBy{Property}OrderBy{Property2}Desc(Type property) - Order by descending
+// findTop{N}By{Property}(Type property) - Limit to top N results
+// findFirst{N}By{Property}(Type property) - Limit to first N results
+
+// DELETE OPERATIONS
+// deleteBy{Property}(Type property) - Delete by property
+// removeBy{Property}(Type property) - Remove by property (same as delete)
+
+// COUNT OPERATIONS
+// countBy{Property}(Type property) - Count entities by property
+
+// EXISTS OPERATIONS
+// existsBy{Property}(Type property) - Check existence by property
+
+// RETURN TYPE VARIATIONS
+// =====================
+
+// Optional<T> findBy... - Returns Optional for single result
+// List<T> findBy... - Returns List for multiple results
+// Set<T> findBy... - Returns Set for multiple results
+// Stream<T> findBy... - Returns Stream for multiple results
+// Page<T> findBy...(Pageable pageable) - Returns Page for pagination
+// Slice<T> findBy...(Pageable pageable) - Returns Slice for pagination
+
+// ASYNC OPERATIONS (if using @Async)
+// ==================================
+// CompletableFuture<T> findBy... - Async single result
+// CompletableFuture<List<T>> findBy... - Async multiple results
+
+// PROJECTIONS
+// ===========
+// <T> List<T> findBy{Property}(Type property, Class<T> type) - DTO projections
+// Interface-based projections using custom interfaces
+
+// MODIFYING QUERIES (require @Modifying and @Query)
+// =================================================
+// @Modifying
+// @Query("UPDATE Entity e SET e.property = ?1 WHERE e.id = ?2")
+// int updatePropertyById(Type newValue, ID id);
+
+// @Modifying
+// @Query("DELETE FROM Entity e WHERE e.property = ?1")
+// void deleteByProperty(Type property);
